@@ -1,0 +1,31 @@
+.main-container{
+    margin: auto;
+    border: 2px solid gainsboro;
+    border-radius: 3px;
+}
+.food-container{
+    background: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+.area-name{
+    color: #198753;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.food-name{
+    font-size: 1.2em;
+    font-weight: bold;
+
+}
+.direction{
+    width: 100%;
+    background: yellowgreen;
+    padding: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}

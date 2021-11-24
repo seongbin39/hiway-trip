@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar,Nav,NavDropdown,Form } from 'react-bootstrap';
 import { Button,FormControl,Container } from 'react-bootstrap';
 import { Navibar, DaeMoon ,Footer } from './frame.js';
-import { 휴게소날씨정보, Weather } from './Weather.js'; import './Weather.css'; 
+import { 휴게소날씨정보, Weather } from './Weather.js'; 
+import Loading from './Loading.js'
+import './Weather.css'; 
 import axios from "axios"
 import './App.css';
 
@@ -59,7 +61,7 @@ function App() {
         <휴게소날씨정보 날씨Data변경 ={날씨Data변경} />
         <Weather 날씨Data={날씨Data}/>
 
-        {isLoading ? 'Loading...' : <RepFood 
+        {isLoading ? <Loading/> : <RepFood 
           routeCode={routeCode}
           data = {foodData}
           setIsLoading = {setIsLoading}
