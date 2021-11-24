@@ -1,15 +1,65 @@
+.daeMoon {
+  background-image: url('./image/고속도로-러시아워.jpg');
+  /* background-image: url('./마스크.png'); */
+  background-size: cover;
+  /* width: 300px; */
+  /* margin-top: 10%; */
+  height: 300px;
+  /* height: 100%; */
+  /* line-height: 150px;  */
+  /* vertical-align: middle; */
+  /* text-align:center;  */
+  /* display:table; */
+  width:100%;
+  display:flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* border: 2px solid; */
+  /* top:50%; */
+  color:rgb(5, 40, 155);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+      -webkit-transition: .6s ease;
+      transition: .6s ease;
+}
+
+.card-img {
+  text-align: center;
+  height : 20vmin;
+  width: 20vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card-img {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+/* 기본 프레임관련 css --------------------------------------------------------*/
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  /* height: 40vmin; */
+  height : auto;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 0.5s linear;
   }
 }
 
