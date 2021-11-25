@@ -1,6 +1,11 @@
+import React from 'react'
+import loadingImg from './image/loading.gif'
+
 const Loading = () =>{
     return (
-        <img src="./image/loading.gif" alt="Loading..." />
+        <div>
+            <img src={loadingImg} alt="Loading..." />
+        </div>
     )
 }
 

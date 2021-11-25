@@ -23,20 +23,19 @@ function App() {
   const [pageSize, setPageSize] = useState(2)
 
   const API_KEY = process.env.REACT_APP_API_KEY
-  const url = `http://data.ex.co.kr/openapi/business/representFoodServiceArea?key=${API_KEY}&type=json&numOfRows=${numOfRows}&pageNo=`
   
-  const getdata = async() => {
+  const getFood = async() => {
+    const url = `http://data.ex.co.kr/openapi/business/representFoodServiceArea?key=${API_KEY}&type=json&numOfRows=${numOfRows}&pageNo=`
+    const temp = []
     try {
-      const res = await axios.get(url + '1')
-      const data = res.data.list
-      const res2 = await axios.get(url + '2')
-      const data2 = res2.data.list
-      const res3 = await axios.get(url + '3')
-      const data3 = res3.data.list
-      setFoodData(data.concat(data2.concat(data3)))
-      
+      for(var i=0; i<3; i++) {
+        const res = await axios.get(url + (i+1).toString())
+        const data = res.data.list
+        temp.push(...data)
+      }
+      setFoodData(temp)
       setIsLoading(false)
-      
+      console.log(temp)
     } catch(err){
       console.log('ERROR')
     }
@@ -44,8 +43,7 @@ function App() {
 
   useEffect( ()=>{
     console.log(날씨Data);
-    getdata()
-    console.log(foodData)
+    getFood()
   },[])
   
   return (

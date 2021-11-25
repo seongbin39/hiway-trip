@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './RepFood.css'
+import './css/RepFood.css'
 
 const StyledSlider = styled(Slider)`
     .slick-slide div{
@@ -13,17 +13,39 @@ const StyledSlider = styled(Slider)`
   `
 const RepFood = (props) => {
   const data = props.data
-
-  
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    arrows: true,
-    // centerMode: true,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    arrows: false,
     autoplay: true,
+    prevArrow : <button type='button' className='slick-prev'>Previous</button>, // 이전 화살표 모양 설정
+		nextArrow : <button type='button' className='slick-next'>Next</button>,
+    responsive: [ // 반응형 설정
+      {
+        breakpoint:1300,
+        settings:{
+          slidesToShow:3,
+          slidesToScroll:3
+        }
+      },
+      {
+        breakpoint:980,
+        settings:{
+          slidesToShow:2,
+          slidesToScroll:2
+        }
+      },
+      {
+        breakpoint:768,
+        settings: {
+          slidesToShow:1,
+          slidesToScroll:1
+        }
+      }
+    ]
   }
 
   const foodUI =
