@@ -61,13 +61,11 @@ function App() {
         <휴게소날씨정보 날씨Data변경 ={날씨Data변경} />
         <Weather 날씨Data={날씨Data}/>
 
-        {isLoading ? <Loading/> : <RepFood 
+        {isLoading ? <Loading/> : 
+        <RepFood 
           routeCode={routeCode}
           data = {foodData}
-          setIsLoading = {setIsLoading}
           />}
-        
-
       </main>
 
       <Footer />
