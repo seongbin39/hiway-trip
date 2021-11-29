@@ -4,28 +4,40 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar,Nav,NavDropdown,Form } from 'react-bootstrap';
 import { Button,FormControl,Container } from 'react-bootstrap';
 import { Navibar, DaeMoon ,Footer } from './frame.js';
-import { 휴게소날씨정보, Weather } from './Weather.js'; 
+import { Weather } from './Weather.js'; 
 import Loading from './Loading.js'
+import Input from './Input.js'
 import './Weather.css'; 
 import axios from "axios"
 import './App.css';
 
-import {RepFood, getFood} from './RepFood.js'
+import { RepFood } from './RepFood.js'
 
 function App() {
   let[날씨Data, 날씨Data변경] = useState([]);
 
+  const [weather, setWeather] = useState([]);
+
   const [routeCode, setRouteCode] = useState('')
+  const [direction, setdirection] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [foodData, setFoodData] = useState([])
   const [numOfRows, setNumOfRows] = useState(99)
-  const [pageNo, setPageNo] = useState(1)
-  const [pageSize, setPageSize] = useState(2)
+
+  const handleClick = (e) => {
+    // const { code } = e.target.id
+    const { name, value } = e.target
+    setRouteCode(name)
+    setdirection(value)
+    console.log(name, value)
+    console.log(routeCode,direction)
+  }
 
   const API_KEY = process.env.REACT_APP_API_KEY
-  
-  const getFood = async() => {
-    const url = `http://data.ex.co.kr/openapi/business/representFoodServiceArea?key=${API_KEY}&type=json&numOfRows=${numOfRows}&pageNo=`
+
+  // 휴게소 메뉴정보 불러오기
+  useEffect( async ()=>{
+    const url = `http://data.ex.co.kr/openapi/business/representFoodServiceArea?key=${API_KEY}&type=json&routeCode=${routeCode}&numOfRows=${numOfRows}&pageNo=`
     const temp = []
     try {
       for(var i=0; i<3; i++) {
@@ -33,17 +45,27 @@ function App() {
         const data = res.data.list
         temp.push(...data)
       }
+      const res = await axios.get(url + '1')
+      const data = res.data.list
+      temp.push(...data)
       setFoodData(temp)
       setIsLoading(false)
       console.log(temp)
     } catch(err){
-      console.log('ERROR')
+      console.log('Food ERROR')
     }
-  }
+  },[routeCode])
 
-  useEffect( ()=>{
-    console.log(날씨Data);
-    getFood()
+  // 날씨정보 불러오기
+  useEffect( async () => {
+    const url = `https://data.ex.co.kr/openapi/restinfo/restWeatherList?key=${API_KEY}&type=json&sdate=20211121&stdHour=18`
+    try {
+      const res = await axios.get(url)
+      const data = res.data.list[0]
+      setWeather(data)
+    }catch{
+      console.log('Weather ERROR')
+    }
   },[])
   
   return (
@@ -55,13 +77,15 @@ function App() {
       
       <main className="container">
         <br/>
-        
-        <휴게소날씨정보 날씨Data변경 ={날씨Data변경} />
-        <Weather 날씨Data={날씨Data}/>
+        <Input
+          onClick={handleClick} />
+        <Weather weather={weather}/>
 
+        {/* 휴게소 정보 컴포넌트, 로딩 중이면 로딩화면 표시 */}
         {isLoading ? <Loading/> : 
         <RepFood 
           routeCode={routeCode}
+          direction={direction}
           data = {foodData}
           />}
       </main>

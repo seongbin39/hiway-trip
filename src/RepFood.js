@@ -13,6 +13,9 @@ const StyledSlider = styled(Slider)`
   `
 const RepFood = (props) => {
   const data = props.data
+  const routeCode = props.routeCode
+  const direction = props.direction
+  // 캐러셀 옵션
   const settings = {
     dots: false,
     infinite: true,
@@ -52,9 +55,8 @@ const RepFood = (props) => {
     data
       .filter(data => {
         const batchMenu = data.batchMenu
-        const routeCode = data.routeCode
         return (
-          (batchMenu !== null) && (routeCode === '0010')
+          (batchMenu !== null) && (direction === data.direction) && (routeCode === data.routeCode)
         )
       })
       .map((data, index) => {
@@ -71,14 +73,12 @@ const RepFood = (props) => {
       })
 
   return (
-
-        <div className="main-container">
-          <div className="direction">{data[0].routeName}({data[0].direction}방면) 휴게소 대표메뉴</div>
-          <StyledSlider {...settings}>
-            {foodUI}
-          </StyledSlider>
-        </div>
-
+    <div className="main-container">
+      <div className="direction">{data[0].routeName}({direction}방면) 휴게소 대표메뉴</div>
+      <StyledSlider {...settings}>
+        {foodUI}
+      </StyledSlider>
+    </div>
   )
 }
 
