@@ -1,8 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar,Nav,NavDropdown,Form } from 'react-bootstrap';
-import { Button,FormControl,Container } from 'react-bootstrap';
 import { Navibar, DaeMoon ,Footer } from './frame.js';
 import { Weather } from './Weather.js'; 
 import Loading from './Loading.js'
@@ -14,8 +12,6 @@ import './App.css';
 import { RepFood } from './RepFood.js'
 
 function App() {
-  let[날씨Data, 날씨Data변경] = useState([]);
-
   const [weather, setWeather] = useState([]);
 
   const [routeCode, setRouteCode] = useState('')
