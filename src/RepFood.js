@@ -1,5 +1,4 @@
 import React from 'react'
-
 import styled from 'styled-components'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -11,10 +10,13 @@ const StyledSlider = styled(Slider)`
       outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
     }
   `
+
+
+
 const RepFood = (props) => {
-  const data = props.data
-  const routeCode = props.routeCode
   const direction = props.direction
+  const routeCode = props.routeCode
+  const data = props.data
   // 캐러셀 옵션
   const settings = {
     dots: false,
@@ -74,7 +76,9 @@ const RepFood = (props) => {
 
   return (
     <div className="main-container">
-      <div className="direction">{data[0].routeName}({direction}방면) 휴게소 대표메뉴</div>
+      <div className="direction">
+        {data[0].routeName}({direction}방면) 휴게소 대표메뉴
+      </div>
       <StyledSlider {...settings}>
         {foodUI}
       </StyledSlider>

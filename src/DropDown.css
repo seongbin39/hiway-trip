@@ -1,0 +1,14 @@
+.menu-trigger{
+    border-radius: 5px;
+    font-size: medium;
+    background: white;
+    border: 0px;
+}
+.menu{
+    background: white;
+    width: 20%;
+}
+.menu button{
+    border-radius: 5px;
+    font-size: medium;
+}
